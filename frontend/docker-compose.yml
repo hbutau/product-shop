@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context:
+        .
+      dockerfile: DockerfileDev
+    volumes:
+      - .:/myapp
+      - .bash_history:/root/.bash_history
+      - node_modules:/myapp/node_modules
+    tmpfs:
+      - /myapp/tmp
+    ports:
+      - "4000:4200"
+      - "7020:7020"
+      - "7357:7357"
+
+volumes:
+  node_modules:
