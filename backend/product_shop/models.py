@@ -8,7 +8,7 @@ class Category(models.Model):
         verbose_name_plural = "categories"
 
     def __str__(self):
-        return self.category_name
+        return self.name
 
 
 class Product(models.Model):
@@ -18,7 +18,7 @@ class Product(models.Model):
     unit_price = models.FloatField()
 
     def __str__(self):
-        return self.product_name
+        return self.name
 
 
 class Tag(models.Model):
@@ -26,12 +26,18 @@ class Tag(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
-
 class Order(models.Model):
 
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
     total = models.FloatField()
+
+    @property
+    def title(self):
+        return f"Order #{self.id}"
+
+    def __str__(self):
+        return self.title
 
 
 class LineItem(models.Model):
@@ -39,3 +45,6 @@ class LineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_items")
     quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.product.name
