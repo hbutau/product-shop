@@ -4,7 +4,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = "categories"
 
     def __str__(self):
@@ -14,7 +14,9 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100, blank=False)
     sku = models.CharField(max_length=100, blank=False, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category_products')
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name="category_products"
+    )
     unit_price = models.FloatField()
 
     def __str__(self):
@@ -30,7 +32,7 @@ class Order(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
-    total = models.FloatField()
+    total = models.FloatField(null=True)
 
     @property
     def title(self):
@@ -42,8 +44,12 @@ class Order(models.Model):
 
 class LineItem(models.Model):
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_items")
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="order_items"
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="product_items"
+    )
     quantity = models.PositiveIntegerField()
 
     def __str__(self):

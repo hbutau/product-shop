@@ -19,10 +19,10 @@ from django.urls import path, include
 from .app import api
 from product_shop.api import router as product_router
 
-api.add_router('products', product_router)
+api.add_router("products", product_router)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', api.urls),
+    path("admin/", admin.site.urls),
+    path("api/", api.urls),
 ]
