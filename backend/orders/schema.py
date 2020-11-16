@@ -7,12 +7,6 @@ from product_shop.schemae import ProductSchemaOut
 from ninja import Schema
 
 
-class OrderSchemaOut(Schema):
-    created: datetime
-    paid: bool
-    total: float
-    title: str
-
 
 class OrderSchema(Schema):
     pass
@@ -25,5 +19,12 @@ class LineItemSchema(Schema):
 class OrderSchemaIn(Schema):
     order_items: List[LineItemSchema]
 
+
+class OrderSchemaOut(Schema):
+    id: int
+    created: datetime
+    paid: bool
+    total: float
+    title: str
 
 

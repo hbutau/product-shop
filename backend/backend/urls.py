@@ -18,8 +18,10 @@ from django.urls import path, include
 
 from .app import api
 from product_shop.api import router as product_router
+from orders.api import router as order_router
 
 api.add_router("products", product_router)
+api.add_router("orders", order_router)
 
 
 urlpatterns = [
