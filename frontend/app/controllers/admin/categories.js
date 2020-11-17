@@ -4,11 +4,11 @@ import { action } from '@ember/object';
 export default class AdminCategoriesController extends Controller {
     @action
     addNewCategory(id, name) {
-        this.get('model').pushObject({id, name})
+        this.store.createRecord('category', {id, name}).save();
     }
 
     @action
     deleteCategory(category) {
-        this.get('model').removeObject(category)
+        category.destroyRecord();
     }
 }
