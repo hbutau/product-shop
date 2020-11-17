@@ -1,3 +1,9 @@
 <h1> Admin Categories Page</h1>
 
+<ul>
+    {{#each @model as |category|}}
+    <li>ID: {{category.id}}, NAME: {{category.name}}</li>
+    {{/each}}
+</ul>
+
 {{outlet}}
