@@ -6,4 +6,9 @@ export default class AdminCategoriesController extends Controller {
     addNewCategory(id, name) {
         this.get('model').pushObject({id, name})
     }
+
+    @action
+    deleteCategory(category) {
+        this.get('model').removeObject(category)
+    }
 }

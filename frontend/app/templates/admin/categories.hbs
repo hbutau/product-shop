@@ -11,6 +11,7 @@
 <ul>
     {{#each @model as |category|}}
     <li>ID: {{category.id}}, NAME: {{category.name}}</li>
+    <button type="button" {{on "click" (fn this.deleteCategory category )}}>Delete</button>
     {{/each}}
 </ul>
 
