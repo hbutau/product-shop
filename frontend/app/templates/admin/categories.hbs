@@ -1,9 +1,19 @@
 <h1> Admin Categories Page</h1>
 
+<form>
+    <label>ID:</label>
+    <Input @value={{newCategoryId}} />
+    <label>NAME:</label>
+    <Input @value={{newCategoryName}} />
+
+    <button type="button" {{on "click" (fn this.addNewCategory newCategoryId newCategoryName)}}>Add</button>
+</form>
 <ul>
     {{#each @model as |category|}}
     <li>ID: {{category.id}}, NAME: {{category.name}}</li>
     {{/each}}
 </ul>
+
+<!-- CategoriesCounter: {{@model.length}} -->
 
 {{outlet}}
